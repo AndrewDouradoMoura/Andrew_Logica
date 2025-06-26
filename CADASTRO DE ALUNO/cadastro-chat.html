@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Alunos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        h1 {
+            color: #333;
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            max-width: 300px;
+        }
+        table {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cadastro de Alunos</h1>
+
+    <!-- Campos de entrada de dados -->
+    <label>Nome:</label><br>
+    <input type="text" id="nome"><br>
+
+    <label>Idade:</label><br>
+    <input type="number" id="idade"><br>
+
+    <label>Curso:</label><br>
+    <select id="curso">
+        <option value="">Selecione um curso</option>
+        <option value="Engenharia">Engenharia</option>
+        <option value="Medicina">Medicina</option>
+        <option value="Arquitetura">Arquitetura</option>
+        <option value="Ciência da Computação">Ciência da Computação</option>
+        <option value="Design">Design</option>
+    </select><br><br>
+
+    <!-- Botão para cadastrar -->
+    <button onclick="CadastrarAluno()">Cadastrar</button>
+
+    <h2>Lista de Alunos Cadastrados</h2>
+    <table id="tabela-alunos">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Curso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Alunos serão adicionados aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Função chamada ao clicar no botão "Cadastrar"
+        function CadastrarAluno() {
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const curso = document.getElementById('curso').value;
+
+            // Validação dos campos
+            if (!nome || !idade || !curso) {
+                alert("Todos os campos precisam ser preenchidos.");
+                return;
+            }
+
+            // Acessa a tabela onde os alunos serão listados
+            const tabela = document.getElementById('tabela-alunos').getElementsByTagName('tbody')[0];
+
+            // Cria uma nova linha na tabela
+            const novaLinha = tabela.insertRow();
+
+            // Preenche as células com os dados do aluno
+            novaLinha.insertCell(0).textContent = nome;
+            novaLinha.insertCell(1).textContent = idade;
+            novaLinha.insertCell(2).textContent = curso;
+
+            // Limpa os campos
+            LimparCampos();
+        }
+
+        // Função para limpar os campos após cadastro
+        function LimparCampos() {
+            document.getElementById("nome").value = "";
+            document.getElementById("idade").value = "";
+            document.getElementById("curso").value = "";
+        }
+    </script>
+
+</body>
+</html>
